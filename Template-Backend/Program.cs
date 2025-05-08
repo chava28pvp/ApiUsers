@@ -11,8 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // Configurar DbContext
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//    options.UseInMemoryDatabase("TestDb")); // Puedes cambiar a SQL Server
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("UserConnection")));
+
 
 // Inyecciones de dependencias
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
